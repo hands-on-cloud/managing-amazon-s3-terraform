@@ -19,5 +19,5 @@ variable "key_name" {
 variable "source_path" {
   type        = string
   description = "The path to the file to upload to S3"
-  default     = "dog.jpg"
+  default     = "img/dog.jpg"
 }
