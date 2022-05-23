@@ -7,9 +7,6 @@ resource "aws_s3_bucket" "bucket" {
   }
 }
 
-
-
-
 #terraform s3 - creating an object:
 resource "aws_s3_object" "object" {
   bucket = aws_s3_bucket.bucket.id
@@ -22,4 +19,18 @@ resource "aws_s3_object" "object" {
   depends_on = [
     aws_s3_bucket.bucket
   ]
+}
+
+#terraform s3 - creating a bucket ACL:
+resource "aws_s3_bucket_acl" "bucket_acl" {
+  bucket = aws_s3_bucket.bucket.id
+  acl    = "private"
+}
+
+#terraform s3 - block public access:
+resource "aws_s3_bucket_public_access_block" "block" {
+  bucket = aws_s3_bucket.bucket.id
+
+  block_public_acls   = true
+  block_public_policy = true
 }
