@@ -7,5 +7,11 @@ variable "region" {
 variable "bucket_prefix" {
   type        = string
   description = "The prefix to use for the S3 bucket name"
-  default     = "tf-bucket-policy-demo"
+  default     = "tf-confidential"
+}
+
+variable "upload_source" {
+  type        = string
+  description = "The source file to upload"
+  default     = "uploads/confidential.jpg"
 }
