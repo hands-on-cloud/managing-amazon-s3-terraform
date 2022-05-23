@@ -7,13 +7,17 @@ resource "aws_s3_bucket" "bucket" {
   }
 }
 
+
+
+
 #terraform s3 - creating an object:
 resource "aws_s3_object" "object" {
   bucket = aws_s3_bucket.bucket.id
-  key    = var.key_name
-  source = var.source_path
 
-  etag = filemd5(var.source_path)
+  for_each = fileset("uploads/", "*")
+  key    = each.value
+  source = "uploads/${each.value}"
+  etag = filemd5("uploads/${each.value}")
 
   depends_on = [
     aws_s3_bucket.bucket
