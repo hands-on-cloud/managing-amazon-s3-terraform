@@ -15,3 +15,9 @@ variable "upload_source" {
   description = "The source file to upload"
   default     = "uploads/confidential.jpg"
 }
+
+variable "iam_username" {
+  type        = string
+  description = "The IAM username to use"
+  default     = "terraform"
+}
