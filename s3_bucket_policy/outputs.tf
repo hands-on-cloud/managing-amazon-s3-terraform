@@ -10,7 +10,7 @@ output "iam_user_arn" {
 output "iam_user_id" {
   value = aws_iam_user.user.id
 }
-  
+
 output "iam_user_password" {
   value = aws_iam_user_login_profile.login.password
 }
