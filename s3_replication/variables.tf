@@ -21,3 +21,9 @@ variable "dest_bucket_prefix" {
   description = "The Destination Bucket's prefix"
   default     = "tf-dest-bucket"
 }
+
+variable "upload_path" {
+  type        = string
+  description = "The path to the file to upload"
+  default     = "uploads/file.txt"
+}

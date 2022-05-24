@@ -1,10 +1,10 @@
-#create source bucket :
+#terraform s3 : create source bucket :
 resource "aws_s3_bucket" "src" {
   provider      = aws.source
   bucket_prefix = var.src_bucket_prefix
 }
 
-#enable versioning - source bucket:
+#terraform s3 : enable versioning - source bucket:
 resource "aws_s3_bucket_versioning" "src_versioning" {
   provider = aws.source
 
@@ -14,7 +14,7 @@ resource "aws_s3_bucket_versioning" "src_versioning" {
   }
 }
 
-#create replication configuration for source bucket:
+#terraform s3 : create replication configuration for source bucket:
 resource "aws_s3_bucket_replication_configuration" "replication" {
   provider = aws.source
   # Must have bucket versioning enabled first
@@ -30,23 +30,27 @@ resource "aws_s3_bucket_replication_configuration" "replication" {
       storage_class = "STANDARD"
     }
 
-  #perform replication only objects having this tag:
+    #perform replication only objects having this tag:
     filter {
       tag {
         key   = "replication"
         value = "true"
       }
     }
+
+    delete_marker_replication {
+      status = "Disabled"
+    }
   }
 }
 
-#create destination bucket:
+#terraform s3 : create destination bucket:
 resource "aws_s3_bucket" "dest" {
   provider      = aws.destination
   bucket_prefix = var.dest_bucket_prefix
 }
 
-#enable versioning - destination bucket:
+#terraform s3 : enable versioning - destination bucket:
 resource "aws_s3_bucket_versioning" "dest_versioning" {
   provider = aws.destination
 
@@ -56,3 +60,15 @@ resource "aws_s3_bucket_versioning" "dest_versioning" {
   }
 }
 
+#terraform s3 : upload object to source bucket to check replication
+resource "aws_s3_object" "object" {
+  provider = aws.source
+
+  bucket = aws_s3_bucket.src.id
+  key    = basename(var.upload_path)
+  source = var.upload_path
+
+  tags = {
+    "replication" = "true" #tag to allow replication
+  }
+}
