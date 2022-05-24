@@ -4,7 +4,7 @@ data "aws_iam_policy_document" "s3_list" {
     sid    = "ListS3Buckets"
     effect = "Allow"
 
-    actions   = ["s3:ListBuckets"]
+    actions   = ["s3:ListAllMyBuckets"]
     resources = ["*"] # List all S3 buckets in the account
   }
 }
