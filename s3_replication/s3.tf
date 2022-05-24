@@ -37,7 +37,7 @@ resource "aws_s3_bucket_replication_configuration" "replication" {
         value = "true"
       }
     }
-
+    
     delete_marker_replication {
       status = "Disabled"
     }
@@ -71,4 +71,12 @@ resource "aws_s3_object" "object" {
   tags = {
     "replication" = "true" #tag to allow replication
   }
+
+#adding explicit dependcy to enable replication:
+  depends_on = [
+    aws_s3_bucket.src,
+    aws_s3_bucket_replication_configuration.replication,
+    aws_s3_bucket.dest,
+    aws_s3_bucket_versioning.dest_versioning,
+  ]
 }
