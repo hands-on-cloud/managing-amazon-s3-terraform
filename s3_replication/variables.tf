@@ -9,3 +9,15 @@ variable "dest_region" {
   description = "The Destination Bucket's region"
   default     = "us-west-2"
 }
+
+variable "src_bucket_prefix" {
+  type        = string
+  description = "The Source Bucket's prefix"
+  default     = "tf-src-bucket"
+}
+
+variable "dest_bucket_prefix" {
+  type        = string
+  description = "The Destination Bucket's prefix"
+  default     = "tf-dest-bucket"
+}
