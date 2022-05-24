@@ -1,6 +1,6 @@
 #create source bucket :
 resource "aws_s3_bucket" "src" {
-  provider = aws.source
+  provider      = aws.source
   bucket_prefix = var.src_bucket_prefix
 }
 
@@ -16,7 +16,7 @@ resource "aws_s3_bucket_versioning" "src_versioning" {
 
 #create destination bucket:
 resource "aws_s3_bucket" "dest" {
-  provider = aws.destination
+  provider      = aws.destination
   bucket_prefix = var.dest_bucket_prefix
 }
 
