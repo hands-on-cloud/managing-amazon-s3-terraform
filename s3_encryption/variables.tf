@@ -7,7 +7,7 @@ variable "region" {
 variable "bucket_prefix" {
   type        = string
   description = "The prefix to use for the S3 bucket"
-  default     = "tf-sse-demo-"
+  default     = "tf-demo-"
 }
 
 variable "upload_source" {
