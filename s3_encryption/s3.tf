@@ -32,12 +32,6 @@ resource "aws_s3_bucket" "sse_kms_bucket" {
   bucket_prefix = "${var.bucket_prefix}sse-kms"
 }
 
-# Create a KMS key
-resource "aws_kms_key" "key" {
-  description             = "This key is used to encrypt bucket objects"
-  deletion_window_in_days = 10
-}
-
 resource "aws_s3_bucket_server_side_encryption_configuration" "sse_kms_config" {
   bucket = aws_s3_bucket.sse_kms_bucket.id
 
