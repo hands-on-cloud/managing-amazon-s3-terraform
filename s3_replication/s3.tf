@@ -72,7 +72,7 @@ resource "aws_s3_object" "object" {
     "replication" = "true" #tag to allow replication
   }
 
-#adding explicit dependcy to enable replication:
+#adding explicit dependency to enable replication:
   depends_on = [
     aws_s3_bucket.src,
     aws_s3_bucket_replication_configuration.replication,
