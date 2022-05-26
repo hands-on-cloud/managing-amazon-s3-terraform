@@ -21,7 +21,7 @@ resource "aws_lambda_function" "func" {
 }
 
 #lambda permission to allow invocation by s3:
-resource "aws_lambda_permission" "allow_s3_invocation" {
+resource "aws_lambda_permission" "allow_bucket" {
   statement_id  = "AllowExecutionFromS3Bucket"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.func.arn
