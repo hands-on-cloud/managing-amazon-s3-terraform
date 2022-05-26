@@ -15,10 +15,12 @@ exports.handler = async (event) => {
 	try {
 		//read file content from s3:
 		const data = await s3.getObject(params).promise();
+
 		//parse the file content to JSON:
 		const parsedData = JSON.parse(data.Body.toString());
 
-		//return the parsed data:
+		//log and the parsed data:
+		console.log(parsedData);
 		return parsedData;
 	} catch (err) {
 		console.error("Error in reading s3 file content", err);

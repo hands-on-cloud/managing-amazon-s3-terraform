@@ -1,7 +1,7 @@
-# create IAM role for Lambda:
-resource "aws_iam_role" "iam_for_lambda" {
-  name = "iam_for_lambda"
-  assume_role_policy = data.aws_iam_policy_document.sts_lambda.json
+#cloudwatch log group for lambda
+resource "aws_cloudwatch_log_group" "lambda_log_group" {
+  name              = "/aws/lambda/${aws_lambda_function.func.function_name}"
+  retention_in_days = 30
 }
 
 #create zip file for Lambda:
@@ -28,3 +28,4 @@ resource "aws_lambda_permission" "allow_bucket" {
   principal     = "s3.amazonaws.com"
   source_arn    = aws_s3_bucket.bucket.arn
 }
+
