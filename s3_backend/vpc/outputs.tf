@@ -8,5 +8,5 @@ output "subnet_ids" {
 output "sg_ids" {
   value       = [module.web_server_sg.security_group_id]
   description = "Security Group ID"
-  
+
 }
