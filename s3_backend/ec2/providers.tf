@@ -9,7 +9,7 @@ terraform {
   #specifying remote backend configuration:
   backend "s3" {
     bucket         = "terraform-remote-backend-20220527093846103400000001"
-    key            = "terraform.tfstate" #the file name with which state will get saved
+    key            = "terraform-ec2.tfstate" #the file name with which state will get saved
     region         = "ap-south-1"        #cant use variable here
     dynamodb_table = "terraform-state-lock"
   }
