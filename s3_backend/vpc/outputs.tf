@@ -1,14 +1,12 @@
-output "vpc_id" {
-  value       = module.vpc.vpc_id
-  description = "VPC ID"
-}
+#required outputs for EC2 instances:
 
-output "public_subnets" {
+output "subnet_ids" {
   value       = module.vpc.public_subnets
   description = "VPC public subnets' IDs list"
 }
 
-output "private_subnets" {
-  value       = module.vpc.private_subnets
-  description = "VPC private subnets' IDs list"
+output "sg_ids" {
+  value       = [module.web_server_sg.security_group_id]
+  description = "Security Group ID"
+  
 }
