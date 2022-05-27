@@ -41,6 +41,7 @@ resource "aws_s3_object" "object" {
   key    = "website/${each.value}"
   source = "uploads/${each.value}"
   etag = filemd5("uploads/${each.value}")
+  content_type = "text/html"
 
   depends_on = [
     aws_s3_bucket.bucket
