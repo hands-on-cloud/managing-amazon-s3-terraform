@@ -28,7 +28,7 @@ resource "aws_s3_bucket_website_configuration" "website" {
   index_document {
     suffix = "index.html"
   }
-  error_document{
+  error_document {
     key = "error.html"
   }
 }
@@ -37,10 +37,10 @@ resource "aws_s3_bucket_website_configuration" "website" {
 resource "aws_s3_object" "object" {
   bucket = aws_s3_bucket.bucket.id
 
-  for_each = fileset("uploads/", "*")
-  key    = "website/${each.value}"
-  source = "uploads/${each.value}"
-  etag = filemd5("uploads/${each.value}")
+  for_each     = fileset("uploads/", "*")
+  key          = "website/${each.value}"
+  source       = "uploads/${each.value}"
+  etag         = filemd5("uploads/${each.value}")
   content_type = "text/html"
 
   depends_on = [
