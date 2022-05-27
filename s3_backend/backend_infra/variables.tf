@@ -4,10 +4,10 @@ variable "region" {
   default     = "ap-south-1"
 }
 
-variable "bucket_name" {
+variable "bucket_prefix" {
   type        = string
   description = "The name of the S3 bucket to use"
-  default     = "terraform-remote-s3-backend"
+  default     = "terraform-remote-backend-"
 }
 
 variable "table_name" {

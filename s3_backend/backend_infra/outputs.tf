@@ -1,5 +1,5 @@
 output "dynamodb_table_name" {
-  value = aws_dynamodb_table.dynamodb_table.name
+  value = aws_dynamodb_table.state_lock_table.name
 }
 
 output "s3_bucket_name" {
